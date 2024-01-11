@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import cors from "cors";
+import userRouter from "./routes/user.js";
 
 
 //define port number
@@ -18,7 +19,8 @@ app.use(express.json({
 app.use(express.urlencoded({
     limit: '30mb', extended: true
 }));
-
+app.use(cors());
+app.use('/users', userRouter) //http://localhost:5000/users/signup
 
 //connect databas
 const mongodbURL = "mongodb+srv://ehirim87:jM1G43qCn49mhzPd@pets-application.fv9exjj.mongodb.net/cool-pets?retryWrites=true&w=majority"
@@ -37,7 +39,9 @@ app.listen(port, ()=>{
     console.log('listening on port 5000');
 })
 }).catch(err=>{
-    console.log(err.getMessage());
+    console.log((err)=>{
+        console.error(err)
+    });
 })
 
 //mongodb+srv://ehirim87:jM1G43qCn49mhzPd@pets-application.fv9exjj.mongodb.net/cool-pets?retryWrites=true&w=majority
