@@ -20,15 +20,14 @@ app.use(express.urlencoded({
     limit: '30mb', extended: true
 }));
 app.use(cors());
-app.use('/users', userRouter) //http://localhost:5000/users/signup
+app.use('/users', userRouter) //http://localhost:5000/users/signup or signin depending on what the endpoint is configured to use
 
 //connect databas
 const mongodbURL = "mongodb+srv://ehirim87:jM1G43qCn49mhzPd@pets-application.fv9exjj.mongodb.net/cool-pets?retryWrites=true&w=majority"
 
 //get request
 app.get('/', (req, res)=>{
-
-    res.send('hello express'); //sends the response to the client
+   res.send('hello express'); //sends the response to the client
 });
 
 
@@ -46,3 +45,7 @@ app.listen(port, ()=>{
 
 //mongodb+srv://ehirim87:jM1G43qCn49mhzPd@pets-application.fv9exjj.mongodb.net/cool-pets?retryWrites=true&w=majority
 //jM1G43qCn49mhzPd
+
+
+///enter node and then enter this statement to get a random crypto secret for token secret
+//> require('crypto').randomBytes(64).toString('hex') 
